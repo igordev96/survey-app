@@ -1,10 +1,12 @@
-type LoadingProps = {
+import { ComponentProps } from 'react';
+
+type LoadingProps = ComponentProps<'div'> & {
   size?: number;
   ballSize?: number;
 };
 
 export function Loading(props: LoadingProps) {
-  const { size = 80, ballSize = 8 } = props;
+  const { size = 80, ballSize = 8, className, ...rest } = props;
 
   return (
     <div
@@ -12,7 +14,8 @@ export function Loading(props: LoadingProps) {
         height: size,
         width: size,
       }}
-      className='flex animate-spin items-center justify-end bg-transparent'
+      className={`flex animate-spin items-center justify-end bg-transparent ${className}`}
+      {...rest}
     >
       <div
         style={{
