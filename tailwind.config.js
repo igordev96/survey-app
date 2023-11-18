@@ -1,8 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.tsx"],
+  content: ['./index.html', './src/**/*.tsx'],
   theme: {
-    extend: {},
+    extend: {
+      minHeight: {
+        page: 'calc(100vh - 61px)',
+      },
+    },
   },
   plugins: [],
 };
