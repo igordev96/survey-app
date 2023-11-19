@@ -1,33 +1,34 @@
-import { MagnifyingGlass } from '@phosphor-icons/react';
+import { MagnifyingGlass, X } from '@phosphor-icons/react';
 import { ComponentProps, forwardRef } from 'react';
 
 type InputProps = ComponentProps<'input'> & {
   containerClassName?: string;
-  handleClickMagnifyingGlass?: () => void;
+  handleDismiss?: () => void;
 };
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
     containerClassName = '',
     className = '',
-    handleClickMagnifyingGlass,
     type = 'text',
+    handleDismiss,
     ...rest
   } = props;
 
   return (
     <div
-      className={`relative w-fit rounded bg-gray-500 py-1 ${containerClassName}`}
+      className={`flex w-fit items-center gap-2 rounded bg-gray-500 px-2 py-1 ${containerClassName}`}
     >
+      <MagnifyingGlass size={24} />
       <input
-        className={`ml-2 mr-10 bg-transparent outline-none placeholder:text-gray-300 ${className}`}
+        className={`bg-transparent outline-none placeholder:text-gray-300 ${className}`}
         type={type}
         ref={ref}
         {...rest}
       />
-      <MagnifyingGlass
-        onClick={handleClickMagnifyingGlass}
-        className='absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer'
+      <X
+        onClick={handleDismiss}
+        className='cursor-pointer transition-colors hover:text-black'
         size={24}
       />
     </div>
