@@ -7,9 +7,12 @@ type ButtonProps = ComponentProps<'button'> & {
 };
 
 const buttonStyles = {
-  primary: 'bg-black hover:bg-gray-900',
-  secondary: 'bg-blue-500 hover:bg-blue-800',
-  tertiary: 'bg-gray-500 hover:bg-amber-600',
+  primary:
+    'bg-black hover:bg-gray-900 disabled:bg-gray-900 disabled:cursor-not-allowed',
+  secondary:
+    'bg-blue-500 hover:bg-blue-800 disabled:bg-blue-800 disabled:cursor-not-allowed',
+  tertiary:
+    'bg-gray-500 hover:bg-amber-600 disabled:bg-amber-600 disabled:cursor-not-allowed',
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(

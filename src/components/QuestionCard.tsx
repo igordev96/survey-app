@@ -9,7 +9,7 @@ export function QuestionCard(props: QuestionCardProps) {
 
   return (
     <Link
-      className='flex h-48 w-40 flex-col gap-5 overflow-hidden rounded-md bg-zinc-600 p-1 shadow-md transition-transform hover:-translate-y-1'
+      className='flex h-48 w-full flex-col gap-5 overflow-hidden rounded-md bg-zinc-600 p-1 shadow-md transition-transform hover:-translate-y-1'
       to={id.toString()}
       title={question}
     >
@@ -17,7 +17,9 @@ export function QuestionCard(props: QuestionCardProps) {
         <img className='h-full w-full object-cover' src={thumb_url} alt='' />
       </div>
       <p className='break-all text-sm '>{question}</p>
-      <p className='mt-auto text-center text-xs text-amber-500'>{formatDateToHumanDate(published_at)}</p>
+      <p className='mt-auto text-center text-xs text-amber-500'>
+        {formatDateToHumanDate(published_at)}
+      </p>
     </Link>
   );
 }

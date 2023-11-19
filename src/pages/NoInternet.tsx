@@ -1,7 +1,7 @@
-import { WifiSlash } from '@phosphor-icons/react';
 import { useEffect } from 'react';
-import { useOnline } from '../hooks/useOnline';
 import { useNavigate } from 'react-router-dom';
+import { WifiSlash } from '@phosphor-icons/react';
+import { useOnline } from '../hooks/useOnline';
 
 export function NoInternet() {
   const { isOnline } = useOnline();
@@ -9,7 +9,7 @@ export function NoInternet() {
 
   useEffect(() => {
     if (isOnline) {
-      navigate(-1);
+      navigate('/home');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOnline]);
