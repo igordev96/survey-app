@@ -1,8 +1,9 @@
-import * as Dialog from '@radix-ui/react-dialog';
-import { Button } from './Button';
-import { X } from '@phosphor-icons/react';
-import { Input } from './Input';
 import { ChangeEvent, useState } from 'react';
+import * as Dialog from '@radix-ui/react-dialog';
+import { X } from '@phosphor-icons/react';
+import { useEmail } from '../hooks/useEmail';
+import { Button } from './Button';
+import { Input } from './Input';
 
 type ShareDialogProps = {
   className?: string;
@@ -10,6 +11,8 @@ type ShareDialogProps = {
 
 export function ShareDialog(props: ShareDialogProps) {
   const { className = '' } = props;
+
+  const { mutate } = useEmail();
 
   const [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState('');
@@ -26,7 +29,7 @@ export function ShareDialog(props: ShareDialogProps) {
   const handleShare = () => {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (email && emailPattern.test(email)) {
-      console.log(window.location.href);
+      mutate({ email, url: window.location.href });
       setIsOpen(false);
     } else {
       alert('This is not a valid email!');
