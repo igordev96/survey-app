@@ -2,10 +2,15 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { Header } from './components/Header';
+import { QuestionsList } from './pages/QuestionsList';
 
 const queryClient = new QueryClient();
 
-const router = createBrowserRouter([{ path: '/', Component: Home }]);
+const router = createBrowserRouter([
+  { path: '/', Component: Home },
+  { path: '/questions', Component: QuestionsList },
+  { path: '/questions', Component: QuestionsList },
+]);
 
 export function App() {
   return (
