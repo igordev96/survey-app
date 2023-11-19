@@ -3,7 +3,7 @@ import { IQuestion } from '../interfaces/Question.interface';
 
 class BlissAPI {
   baseURL =
-    'https://private-anon-bd962f17a8-blissrecruitmentapi.apiary-mock.com/';
+    'https://private-anon-bd962f17a8-blissrecruitmentapi.apiary-mock.com';
 
   getHealthStatus(): Promise<StatusResponse> {
     return fetch(`${this.baseURL}/health`).then((res) => res.json());
@@ -11,13 +11,11 @@ class BlissAPI {
 
   getQuestions(filter?: string): Promise<IQuestion[]> {
     return fetch(
-      `${this.baseURL}/questions?limit=10&offset=10${
-        filter && `&filter=${filter}`
-      }`,
+      `${this.baseURL}/questions${filter ? `?filter=${filter}` : ''}`,
     ).then((res) => res.json());
   }
 
-  getQuestion(id: number | string): Promise<IQuestion> {
+  getQuestion(id?: number | string): Promise<IQuestion> {
     return fetch(`${this.baseURL}/questions/${id}`).then((res) => res.json());
   }
 
