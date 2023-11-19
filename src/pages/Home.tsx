@@ -21,7 +21,11 @@ export function Home() {
     <main className='mx-auto w-fit'>
       <div className='flex w-fit items-center gap-3 text-2xl'>
         <p>{mockIsLoading ? 'Checking the server health' : 'Server health'}</p>
-        <Heartbeat className='animate-pulse text-red-600' weight='bold' size={36} />
+        <Heartbeat
+          className='animate-pulse text-red-600'
+          weight='bold'
+          size={36}
+        />
       </div>
       {mockIsLoading ? (
         <Loading className='mx-auto mt-14 w-fit' />
