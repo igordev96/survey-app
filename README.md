@@ -1,30 +1,46 @@
-# React + TypeScript + Vite
+# Survey App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web application suggested by Bliss Applications as a Technical Assessment
 
 Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## :runner: :computer: Running in your pc
 
-## Expanding the ESLint configuration
+```bash
+  # Clone the project
+  git clone https://github.com/igordev96/survey-app.git
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+  # Open it
+  cd survey-app
 
-- Configure the top-level `parserOptions` property like this:
+  # Install the dependencies
+  npm install
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+  # Run it
+  npm run dev
+
+  # Open it in your browser
+  # If it's not the URL below, you can check your prompt
+  # To see if Vite hosted on another PORT
+  http://localhost:5173/
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## :cloud: See also the deployed application
+
+https://survey-app-igordev96.netlify.app/
+
+## :hammer: Techs used in this project
+
+- ⚛️ **React**
+- ⚛️ **React Router DOM**
+- ⚛️ **TypeScript**
+- ⚛️ **Phosphor Icons**
+- ⚛️ **Radix-UI**
+- ⚛️ **React Query**
+- ⚛️ **React Toastify**
+- ⚛️ **TailwindCSS**
+- ⚛️ **Vite**
+
+---
+
+Made by [Igor Alves](https://www.linkedin.com/in/igordev96)
