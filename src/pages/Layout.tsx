@@ -1,16 +1,17 @@
-import { Header } from '../components/Header';
-import { Outlet, useNavigate } from 'react-router-dom';
-import { useOnline } from '../hooks/useOnline';
 import { useEffect } from 'react';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { useOnline } from '../hooks/useOnline';
+import { Header } from '../components/Header';
 
 export function Layout() {
-  const { isOnline } = useOnline();
   const navigate = useNavigate();
+  const { isOnline } = useOnline();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     if (!isOnline) {
       navigate('/no-internet');
-    } else {
+    } else if (pathname === '/') {
       navigate('/home');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

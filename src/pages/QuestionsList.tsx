@@ -1,22 +1,32 @@
 import { ChangeEvent, useRef } from 'react';
+import { useDebounce } from '../hooks/useDebounce';
 import { useFilterParams } from '../hooks/useFilterParams';
 import { useGetQuestions } from '../hooks/useGetQuestions';
+import { Button } from '../components/Button';
 import { Input } from '../components/Input';
+import { Loading } from '../components/Loading';
 import { QuestionCard } from '../components/QuestionCard';
 import { ShareDialog } from '../components/ShareDialog';
-import { useDebounce } from '../hooks/useDebounce';
 
 export function QuestionsList() {
   const inputRef = useRef<HTMLInputElement>(null);
   const { filterParams, handleFilterParams, handleClearParams } =
     useFilterParams(inputRef);
   const debouncedFilter = useDebounce(filterParams);
-  const { data: questions } = useGetQuestions(debouncedFilter);
+  const { data, isLoading, hasNextPage, fetchNextPage } =
+    useGetQuestions(debouncedFilter);
+
+  const handleLoadMore = () => {
+    fetchNextPage();
+  };
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     handleFilterParams(e.currentTarget.value);
   };
 
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <main>
       <div className='flex items-center justify-between'>
@@ -32,11 +42,19 @@ export function QuestionsList() {
         handleDismiss={handleClearParams}
         ref={inputRef}
       />
-      <div className='mt-12 flex flex-wrap items-center gap-10'>
-        {questions?.map((question) => (
-          <QuestionCard key={question.id} {...question} />
-        ))}
+      <div className='mt-12 grid auto-rows-auto gap-10  min-[480px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+        {data?.pages?.map((page) =>
+          page.map((question) => (
+            <QuestionCard key={question.id} {...question} />
+          )),
+        )}
       </div>
+      <Button
+        onClick={handleLoadMore}
+        disabled={!hasNextPage}
+        className='mt-16'
+        title='Load more'
+      />
     </main>
   );
 }

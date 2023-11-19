@@ -9,9 +9,11 @@ class BlissAPI {
     return fetch(`${this.baseURL}/health`).then((res) => res.json());
   }
 
-  getQuestions(filter?: string): Promise<IQuestion[]> {
+  getQuestions(filter?: string, offset?: number): Promise<IQuestion[]> {
     return fetch(
-      `${this.baseURL}/questions${filter ? `?filter=${filter}` : ''}`,
+      `${this.baseURL}/questions?limit=10${offset ? `&offset=${offset}` : ''}${
+        filter ? `&filter=${filter}` : ''
+      }`,
     ).then((res) => res.json());
   }
 

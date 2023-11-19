@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, KeyboardEvent, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { X } from '@phosphor-icons/react';
 import { useEmail } from '../hooks/useEmail';
@@ -36,6 +36,12 @@ export function ShareDialog(props: ShareDialogProps) {
     }
   };
 
+  const handleEnterKey = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.code === 'Enter') {
+      handleShare();
+    }
+  };
+
   return (
     <Dialog.Root open={isOpen} onOpenChange={handleDialog}>
       <Dialog.Trigger asChild>
@@ -64,11 +70,13 @@ export function ShareDialog(props: ShareDialogProps) {
             Share this page URL by email
           </Dialog.Description>
           <Input
+            placeholder='Email here'
             handleShare={handleShare}
             containerClassName='mt-2'
             isShare
             value={email}
             onChange={handleChangeEmail}
+            onKeyDown={handleEnterKey}
             type='text'
           />
         </Dialog.Content>
