@@ -9,7 +9,6 @@ const queryClient = new QueryClient();
 const router = createBrowserRouter([
   { path: '/', Component: Home },
   { path: '/questions', Component: QuestionsList },
-  { path: '/questions', Component: QuestionsList },
 ]);
 
 export function App() {
