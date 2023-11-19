@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import { Details } from './pages/Details';
 import { Home } from './pages/Home';
 import { QuestionsList } from './pages/QuestionsList';
@@ -27,6 +28,7 @@ export function App() {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <RouterProvider router={router} />
+      <ToastContainer />
     </QueryClientProvider>
   );
 }

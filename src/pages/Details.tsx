@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { Button } from '../components/Button';
 import { ShareDialog } from '../components/ShareDialog';
 import { useGetQuestion } from '../hooks/useGetQuestion';
@@ -9,7 +11,7 @@ export function Details() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { data: question, isError, isLoading } = useGetQuestion(id);
-  const { mutate } = useVote();
+  const { mutate, isSuccess, isError: IsVoteNotSent } = useVote();
 
   const handleVote = async (vote: string) => {
     const newChoices = question!.choices.map((choice) => {
@@ -33,6 +35,29 @@ export function Details() {
   const handleBackToList = () => {
     navigate('/questions');
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success('Vote sent successfully!', {
+        position: 'top-right',
+        autoClose: 2000,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'dark',
+      });
+    }
+    if (IsVoteNotSent) {
+      toast.error('Vote was not sent, try again later!', {
+        position: 'top-right',
+        autoClose: 2000,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'dark',
+      });
+    }
+  }, [isSuccess, IsVoteNotSent]);
 
   if (isLoading) {
     return <Loading />;

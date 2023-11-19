@@ -1,4 +1,5 @@
 import { ChangeEvent, KeyboardEvent, useState } from 'react';
+import { toast } from 'react-toastify';
 import * as Dialog from '@radix-ui/react-dialog';
 import { X } from '@phosphor-icons/react';
 import { useEmail } from '../hooks/useEmail';
@@ -31,8 +32,23 @@ export function ShareDialog(props: ShareDialogProps) {
     if (email && emailPattern.test(email)) {
       mutate({ email, url: window.location.href });
       setIsOpen(false);
+      toast.success('Email sent successfully!', {
+        position: 'top-right',
+        autoClose: 2000,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'dark',
+      });
     } else {
-      alert('This is not a valid email!');
+      toast.error('This is not a valid email!', {
+        position: 'top-right',
+        autoClose: 2000,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'dark',
+      });
     }
   };
 
