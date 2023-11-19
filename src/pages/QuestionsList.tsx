@@ -2,8 +2,8 @@ import { ChangeEvent, useRef } from 'react';
 import { Input } from '../components/Input';
 import { QuestionCard } from '../components/QuestionCard';
 import { useFilterParams } from '../hooks/useFilterParams';
-import { Button } from '../components/Button';
 import { mockData } from '../utils/data';
+import { ShareDialog } from '../components/ShareDialog';
 
 export function QuestionsList() {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -18,11 +18,12 @@ export function QuestionsList() {
     <main>
       <div className='flex items-center justify-between'>
         <h1 className='text-2xl'>Questions List</h1>
-        <Button buttonStyle='secondary' title='Share screen' />
+        <ShareDialog />
       </div>
       <Input
         containerClassName='mt-4 w-full sm:w-fit'
         className='w-full sm:w-fit'
+        placeholder='Search'
         value={filterParams}
         onChange={handleOnChange}
         handleDismiss={handleClearParams}
