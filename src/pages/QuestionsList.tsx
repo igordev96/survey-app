@@ -1,8 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { ChangeEvent, useRef } from 'react';
 import { Input } from '../components/Input';
 import { QuestionCard } from '../components/QuestionCard';
 import { IQuestion } from '../interfaces/Question.interface';
-import { useSearchParams } from 'react-router-dom';
+import { useFilterParams } from '../hooks/useFilterParams';
+import { Button } from '../components/Button';
 
 const mockData: Array<IQuestion> = [
   {
@@ -278,28 +279,26 @@ const mockData: Array<IQuestion> = [
 ];
 
 export function QuestionsList() {
-  const [searchParams] = useSearchParams();
   const inputRef = useRef<HTMLInputElement>(null);
+  const { filterParams, handleFilterParams, handleClearParams } =
+    useFilterParams(inputRef);
 
-  const handleSearch = () => {
-    console.log(inputRef.current?.value);
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+    handleFilterParams(e.currentTarget.value);
   };
-
-  console.log(mockData, searchParams.get('filter'));
-
-  useEffect(() => {
-    if (searchParams.get('filter') === '') {
-      inputRef.current?.focus();
-    }
-  }, [searchParams]);
 
   return (
     <main>
-      <h1 className='text-2xl'>Questions List</h1>
+      <div className='flex items-center justify-between'>
+        <h1 className='text-2xl'>Questions List</h1>
+        <Button buttonStyle='secondary' title='Share screen' />
+      </div>
       <Input
         containerClassName='mt-4 w-full sm:w-fit'
         className='w-full sm:w-fit'
-        handleClickMagnifyingGlass={handleSearch}
+        value={filterParams}
+        onChange={handleOnChange}
+        handleDismiss={handleClearParams}
         ref={inputRef}
       />
       <div className='mt-12 flex flex-wrap items-center gap-10'>
