@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { mockData } from '../utils/data';
 import { Button } from '../components/Button';
+import { ShareDialog } from '../components/ShareDialog';
 
 export function Details() {
   const { id } = useParams();
@@ -29,11 +30,7 @@ export function Details() {
           className='w-full sm:w-fit'
           title='Back to list'
         />
-        <Button
-          className='w-full sm:w-fit'
-          title='Share screen'
-          buttonStyle='secondary'
-        />
+        <ShareDialog className='w-full sm:w-fit' />
       </div>
       <h1 className='mb-4 text-center text-2xl text-amber-400'>
         {mockQuestion.question}
@@ -48,6 +45,7 @@ export function Details() {
       <div className='mx-auto mt-8 grid max-w-[480px] grid-cols-2 grid-rows-2 gap-4'>
         {mockQuestion.choices.map((choice) => (
           <Button
+            key={choice.choice}
             title={choice.choice}
             subTitle={choice.votes}
             buttonStyle='tertiary'
