@@ -6,6 +6,7 @@ import { Details } from './pages/Details';
 import { Home } from './pages/Home';
 import { QuestionsList } from './pages/QuestionsList';
 import { Layout } from './pages/Layout';
+import { NotFound } from './pages/NotFound';
 import { NoInternet } from './pages/NoInternet';
 
 const queryClient = new QueryClient();
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       { path: '/questions/:id', Component: Details },
     ],
   },
+  { path: '*', Component: NotFound },
   { path: '/no-internet', Component: NoInternet },
 ]);
 
