@@ -1,8 +1,6 @@
 # Survey App
 
-A web application suggested by Bliss Applications as a Technical Assessment
-
-Currently, two official plugins are available:
+A web application to mock a survey app
 
 ## :runner: :computer: Running in your pc
 
